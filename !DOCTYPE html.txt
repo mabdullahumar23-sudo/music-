@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Music Heaven — A heavenly, animated music streaming experience" />
+  <title>Music Heaven — Feel the Sound</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <!-- Animated background -->
+  <div class="aurora">
+    <div class="aurora__layer aurora__layer--1"></div>
+    <div class="aurora__layer aurora__layer--2"></div>
+    <div class="aurora__layer aurora__layer--3"></div>
+  </div>
+  <div class="stars" id="stars"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader__vinyl">
+      <div class="loader__vinyl-inner"></div>
+    </div>
+    <p class="loader__text">Tuning the heavens…</p>
+  </div>
+
+  <!-- Navbar -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="#" class="nav__logo">
+        <span class="nav__logo-mark"><i class="fa-solid fa-music"></i></span>
+        <span class="nav__logo-text">Music<span>Heaven</span></span>
+      </a>
+      <nav class="nav__menu" id="navMenu">
+        <a href="#home" class="nav__link active">Home</a>
+        <a href="#discover" class="nav__link">Discover</a>
+        <a href="#genres" class="nav__link">Genres</a>
+        <a href="#player" class="nav__link">Player</a>
+        <a href="#contact" class="nav__link">Contact</a>
+      </nav>
+      <div class="nav__actions">
+        <button class="btn btn--ghost" id="searchToggle"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <a href="#player" class="btn btn--primary">Start Listening</a>
+        <button class="nav__burger" id="navBurger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="search-bar" id="searchBar">
+      <div class="container">
+        <input type="text" id="searchInput" placeholder="Search songs, artists, albums…" />
+        <button class="btn btn--primary" id="searchBtn">Search</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <span class="badge reveal">
+          <span class="badge__dot"></span> Live • Now streaming in 4D sound
+        </span>
+        <h1 class="hero__title reveal">
+          Where every <span class="gradient-text">note</span><br />
+          feels like <span class="gradient-text">heaven</span>.
+        </h1>
+        <p class="hero__subtitle reveal">
+          Immerse yourself in a celestial audio journey. Curated tracks, AI-driven playlists,
+          and a player so smooth it feels like floating on clouds.
+        </p>
+        <div class="hero__cta reveal">
+          <a href="#player" class="btn btn--primary btn--lg">
+            <i class="fa-solid fa-play"></i> Play Now
+          </a>
+          <a href="#discover" class="btn btn--ghost btn--lg">
+            <i class="fa-solid fa-compass"></i> Explore
+          </a>
+        </div>
+        <div class="hero__stats reveal">
+          <div class="stat">
+            <div class="stat__num" data-target="12">0</div><div class="stat__label">M+ Tracks</div>
+          </div>
+          <div class="stat">
+            <div class="stat__num" data-target="850">0</div><div class="stat__label">K+ Artists</div>
+          </div>
+          <div class="stat">
+            <div class="stat__num" data-target="240">0</div><div class="stat__label">Countries</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero__visual reveal">
+        <div class="orb">
+          <div class="orb__core"></div>
+          <div class="orb__ring orb__ring--1"></div>
+          <div class="orb__ring orb__ring--2"></div>
+          <div class="orb__ring orb__ring--3"></div>
+          <div class="orb__particle orb__particle--1"></div>
+          <div class="orb__particle orb__particle--2"></div>
+          <div class="orb__particle orb__particle--3"></div>
+          <div class="orb__particle orb__particle--4"></div>
+        </div>
+        <div class="visualizer" id="visualizer">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+    <div class="hero__scroll">
+      <span></span>
+      <p>Scroll to feel the vibe</p>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>✦ Trending Now</span><span>✦ New Releases</span><span>✦ Editor's Picks</span>
+      <span>✦ Live Sessions</span><span>✦ Chill Vibes</span><span>✦ Midnight Jazz</span>
+      <span>✦ Trending Now</span><span>✦ New Releases</span><span>✦ Editor's Picks</span>
+      <span>✦ Live Sessions</span><span>✦ Chill Vibes</span><span>✦ Midnight Jazz</span>
+    </div>
+  </div>
+
+  <!-- Discover / Trending Tracks -->
+  <section class="section" id="discover">
+    <div class="container">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Discover</span>
+          <h2 class="section__title">Trending <span class="gradient-text">tracks</span></h2>
+        </div>
+        <div class="tabs" id="trackTabs">
+          <button class="tab active" data-filter="all">All</button>
+          <button class="tab" data-filter="pop">Pop</button>
+          <button class="tab" data-filter="lofi">Lo-fi</button>
+          <button class="tab" data-filter="edm">EDM</button>
+          <button class="tab" data-filter="jazz">Jazz</button>
+        </div>
+      </div>
+      <div class="tracks" id="tracks"></div>
+    </div>
+  </section>
+
+  <!-- Genres -->
+  <section class="section section--alt" id="genres">
+    <div class="container">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Explore</span>
+          <h2 class="section__title">Find your <span class="gradient-text">vibe</span></h2>
+        </div>
+      </div>
+      <div class="genres">
+        <a href="#" class="genre-card genre--lofi" data-genre="lofi">
+          <div class="genre-card__bg"></div>
+          <div class="genre-card__content">
+            <i class="fa-solid fa-cloud"></i>
+            <h3>Lo-fi Chill</h3>
+            <p>Soft beats for late nights</p>
+          </div>
+        </a>
+        <a href="#" class="genre-card genre--edm" data-genre="edm">
+          <div class="genre-card__bg"></div>
+          <div class="genre-card__content">
+            <i class="fa-solid fa-bolt"></i>
+            <h3>EDM Drop</h3>
+            <p>Pure adrenaline</p>
+          </div>
+        </a>
+        <a href="#" class="genre-card genre--jazz" data-genre="jazz">
+          <div class="genre-card__bg"></div>
+          <div class="genre-card__content">
+            <i class="fa-solid fa-martini-glass-citrus"></i>
+            <h3>Jazz Lounge</h3>
+            <p>Smooth & soulful</p>
+          </div>
+        </a>
+        <a href="#" class="genre-card genre--pop" data-genre="pop">
+          <div class="genre-card__bg"></div>
+          <div class="genre-card__content">
+            <i class="fa-solid fa-star"></i>
+            <h3>Pop Hits</h3>
+            <p>The chart toppers</p>
+          </div>
+        </a>
+        <a href="#" class="genre-card genre--classical" data-genre="classical">
+          <div class="genre-card__bg"></div>
+          <div class="genre-card__content">
+            <i class="fa-solid fa-feather"></i>
+            <h3>Classical</h3>
+            <p>Timeless elegance</p>
+          </div>
+        </a>
+        <a href="#" class="genre-card genre--rock" data-genre="rock">
+          <div class="genre-card__bg"></div>
+          <div class="genre-card__content">
+            <i class="fa-solid fa-guitar"></i>
+            <h3>Rock</h3>
+            <p>Raw, loud, electric</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Player -->
+  <section class="section" id="player">
+    <div class="container">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Now Playing</span>
+          <h2 class="section__title">Heavenly <span class="gradient-text">player</span></h2>
+        </div>
+      </div>
+      <div class="player">
+        <div class="player__cover" id="playerCover">
+          <div class="player__cover-disc">
+            <div class="player__cover-inner"></div>
+          </div>
+        </div>
+        <div class="player__info">
+          <h3 class="player__title" id="playerTitle">Celestial Drift</h3>
+          <p class="player__artist" id="playerArtist">Aurora Skies</p>
+          <div class="player__progress">
+            <span class="player__time" id="curTime">0:00</span>
+            <div class="player__bar" id="playerBar">
+              <div class="player__bar-fill" id="playerBarFill"></div>
+              <div class="player__bar-thumb" id="playerBarThumb"></div>
+            </div>
+            <span class="player__time" id="durTime">0:00</span>
+          </div>
+          <div class="player__controls">
+            <button class="ctrl" id="shuffleBtn" title="Shuffle"><i class="fa-solid fa-shuffle"></i></button>
+            <button class="ctrl" id="prevBtn" title="Previous"><i class="fa-solid fa-backward-step"></i></button>
+            <button class="ctrl ctrl--play" id="playBtn" title="Play / Pause">
+              <i class="fa-solid fa-play" id="playIcon"></i>
+            </button>
+            <button class="ctrl" id="nextBtn" title="Next"><i class="fa-solid fa-forward-step"></i></button>
+            <button class="ctrl" id="repeatBtn" title="Repeat"><i class="fa-solid fa-repeat"></i></button>
+          </div>
+          <div class="player__extras">
+            <button class="ctrl ctrl--sm" id="likeBtn"><i class="fa-regular fa-heart"></i></button>
+            <div class="volume">
+              <i class="fa-solid fa-volume-low" id="volIcon"></i>
+              <input type="range" id="volume" min="0" max="100" value="70" />
+            </div>
+          </div>
+        </div>
+        <div class="player__queue">
+          <h4>Up Next</h4>
+          <ul id="queue"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section section--alt" id="features">
+    <div class="container">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Why Heaven</span>
+          <h2 class="section__title">Built for the <span class="gradient-text">soul</span></h2>
+        </div>
+      </div>
+      <div class="features">
+        <div class="feature reveal">
+          <div class="feature__icon"><i class="fa-solid fa-waveform-lines"></i></div>
+          <h3>Studio sound</h3>
+          <p>Lossless audio with adaptive bitrate that feels like the artist is right in the room.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="feature__icon"><i class="fa-solid fa-robot"></i></div>
+          <h3>AI playlists</h3>
+          <p>Personalized mixes that learn your mood and evolve with you, every single day.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="feature__icon"><i class="fa-solid fa-headphones"></i></div>
+          <h3>3D spatial audio</h3>
+          <p>Dolby-Atmos-ready mixes that wrap around you, no matter the headphones you use.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="feature__icon"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+          <h3>Offline mode</h3>
+          <p>Take heaven with you — download entire albums and listen anywhere, even on a plane.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter / Contact -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="contact">
+        <div class="contact__text">
+          <span class="eyebrow">Stay in tune</span>
+          <h2 class="section__title">Get weekly <span class="gradient-text">heavenly</span> picks</h2>
+          <p>Drop your email and we'll send you the freshest tracks, curated by humans &amp; AI.</p>
+        </div>
+        <form class="contact__form" id="contactForm" action="api/contact.php" method="POST">
+          <div class="field">
+            <input type="text" name="name" id="name" required placeholder=" " />
+            <label for="name">Your name</label>
+          </div>
+          <div class="field">
+            <input type="email" name="email" id="email" required placeholder=" " />
+            <label for="email">Your email</label>
+          </div>
+          <div class="field">
+            <textarea name="message" id="message" rows="4" placeholder=" "></textarea>
+            <label for="message">Tell us your vibe (optional)</label>
+          </div>
+          <button class="btn btn--primary btn--lg" type="submit">
+            <span>Subscribe</span> <i class="fa-solid fa-paper-plane"></i>
+          </button>
+          <p class="form__status" id="formStatus"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="#" class="nav__logo">
+          <span class="nav__logo-mark"><i class="fa-solid fa-music"></i></span>
+          <span class="nav__logo-text">Music<span>Heaven</span></span>
+        </a>
+        <p>Made with <i class="fa-solid fa-heart"></i> for music lovers around the world.</p>
+      </div>
+      <div class="footer__cols">
+        <div>
+          <h5>Product</h5>
+          <a href="#features">Features</a>
+          <a href="#player">Player</a>
+          <a href="#genres">Genres</a>
+        </div>
+        <div>
+          <h5>Company</h5>
+          <a href="#">About</a>
+          <a href="#">Careers</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div>
+          <h5>Follow</h5>
+          <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i> Twitter</a>
+          <a href="#"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bar container">
+      <span>© <span id="year"></span> Music Heaven. All rights reserved.</span>
+      <span>Crafted with HTML · CSS · JS · PHP</span>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i> <span id="toastMsg">Done</span></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/tone@14.8.49/build/Tone.min.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/audio.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
